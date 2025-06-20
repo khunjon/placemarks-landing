@@ -6,6 +6,9 @@ A modern, responsive marketing website for Placemarks - a list management tool f
 
 - **Next.js 14+** with TypeScript
 - **Tailwind CSS** for styling with dark theme
+- **Email signup integration** with Kit (ConvertKit) API
+- **Client-side email validation** with loading states
+- **Optional Supabase backup** for email storage
 - **Static export** configuration for Vercel deployment
 - **Responsive design** (mobile-first approach)
 - **Lucide React** icons for consistency
@@ -38,12 +41,30 @@ placemarks-landing/
 npm install
 ```
 
-2. Run the development server:
+2. Set up environment variables:
+Create a `.env.local` file in the root directory with the following variables:
+
+```bash
+# ConvertKit (Kit) Configuration - Required for email signup
+CONVERTKIT_API_KEY=your_convertkit_api_key_here
+CONVERTKIT_FORM_ID=your_convertkit_form_id_here
+
+# Optional: Supabase Configuration for backup storage
+# SUPABASE_URL=your_supabase_project_url
+# SUPABASE_ANON_KEY=your_supabase_anon_key
+# SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+```
+
+To get your ConvertKit credentials:
+- Go to your ConvertKit account → Settings → Advanced → API Keys
+- Create a new form in ConvertKit and note the form ID from the form settings
+
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Building for Production
 
@@ -78,7 +99,10 @@ This creates a static export in the `out/` directory that can be deployed to Ver
 1. **Hero Section**
    - Large heading with brand messaging
    - Descriptive subheading
-   - Primary and secondary CTA buttons
+   - Email signup form with Kit (ConvertKit) integration
+   - Email validation and loading states
+   - Success/error message handling
+   - Secondary CTA button
    - Visual placeholder for map/location graphics
 
 2. **Features Section**
@@ -98,13 +122,27 @@ This creates a static export in the `out/` directory that can be deployed to Ver
 
 ## Deployment
 
-The project is configured for static export and can be deployed to:
-- Vercel (recommended)
-- Netlify
-- GitHub Pages
-- Any static hosting service
+### With Email Signup (Recommended)
+For full functionality including the email signup form, deploy to platforms that support API routes:
+- **Vercel** (recommended) - Supports API routes out of the box
+- **Netlify** - Use Netlify Functions
+- **Railway** - Full Node.js support
+- Any platform supporting Next.js API routes
 
-The `next.config.js` includes the necessary configuration for static export.
+Make sure to set the environment variables in your deployment platform:
+- `CONVERTKIT_API_KEY`
+- `CONVERTKIT_FORM_ID`
+- Optional: Supabase variables for backup storage
+
+### Static-Only Deployment
+If you prefer static-only deployment without email signup:
+1. Uncomment `output: 'export'` in `next.config.js`
+2. Remove or comment out the email signup form in `Hero.tsx`
+3. Deploy to any static hosting service:
+   - GitHub Pages
+   - Netlify (static)
+   - Vercel (static)
+   - Any CDN or static host
 
 ## Notes
 

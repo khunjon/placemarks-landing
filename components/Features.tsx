@@ -21,30 +21,30 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="section-padding bg-dark-lighter">
+    <section className="section-padding bg-gray-950/50">
       <div className="container-max">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Everything you need to organize your places
+        <div className="text-center mb-20">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+            Everything you need to organize your{' '}
+            <span className="gradient-text">places</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Simple tools to help you save, organize, and share the places that matter to you.
+          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+            Simple, powerful tools to help you save, organize, and share the places that matter to you.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div 
-              key={index}
-              className="text-center p-8 rounded-xl bg-dark border border-gray-700 hover:border-primary/50 transition-colors duration-200"
-            >
-              <div className="flex justify-center mb-6">
-                <div className="p-4 bg-primary/10 rounded-full">
-                  <feature.icon size={32} className="text-primary" />
+            <div key={index} className="card group">
+              <div className="text-center">
+                <div className="flex justify-center mb-6">
+                  <div className="p-4 rounded-2xl bg-blue-500 bg-opacity-10">
+                    <feature.icon size={32} className="text-white" />
+                  </div>
                 </div>
+                <h3 className="text-2xl font-semibold mb-4 text-white">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed text-lg">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-              <p className="text-gray-300 leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>

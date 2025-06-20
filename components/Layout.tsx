@@ -10,7 +10,7 @@ interface LayoutProps {
 export default function Layout({ 
   children, 
   title = "Placemarks - Save, organize, and share your favorite places",
-  description = "A list management tool for saving and sharing favorite places and places you want to go. Organize your favorite restaurants, cafes, and hidden gems."
+  description = "A beautiful list management tool for saving and sharing favorite places and places you want to go. Organize your favorite restaurants, cafes, and hidden gems."
 }: LayoutProps) {
   return (
     <>
@@ -26,7 +26,7 @@ export default function Layout({
         <meta name="twitter:description" content={description} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="min-h-screen bg-dark text-white">
+      <div className="min-h-screen bg-black text-white overflow-x-hidden">
         {children}
       </div>
     </>
