@@ -143,11 +143,11 @@ export default function Home() {
           {status !== 'loading' && status !== 'success' && 'Join the Waitlist'}
         </button>
 
-        {status === 'success' && (
-          <p style={{ color: '#10b981', fontSize: '14px' }}>
-            Thanks! You're on the list.
-          </p>
-        )}
+                 {status === 'success' && (
+           <p style={{ color: '#10b981', fontSize: '14px' }}>
+             Thanks! You&apos;re on the list.
+           </p>
+         )}
         {status === 'error' && (
           <p style={{ color: '#ef4444', fontSize: '14px' }}>
             Something went wrong. Please try again.
