@@ -40,10 +40,10 @@
       ]
     },
     {
-      "source": "/(.*\\.(ico|png|jpg|jpeg|gif|svg|webp))",
+      "source": "/public/(.*)",
       "headers": [
         {
-          "key": "Cache-Control",
+          "key": "Cache-Control", 
           "value": "public, max-age=86400"
         }
       ]
