@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 
 export default function Home() {
   const [email, setEmail] = useState('');
@@ -28,7 +29,27 @@ export default function Home() {
   };
 
   return (
-    <div style={{
+    <>
+      <Head>
+        <title>Placemarks - Save, organize, and share your favorite places</title>
+        <meta name="description" content="A beautiful list management tool for saving and sharing favorite places and places you want to go." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Prevent aggressive mobile caching */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
+        
+        {/* Add timestamp to force cache invalidation */}
+        <meta name="version" content={Date.now().toString()} />
+        
+        {/* iOS Safari specific no-cache */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #0a0a0a 0%, #000000 50%, #0a0a0a 100%)',
       color: '#ffffff',
@@ -190,6 +211,7 @@ export default function Home() {
           <a href="#" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '14px' }}>Contact</a>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 } 
