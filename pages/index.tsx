@@ -19,13 +19,17 @@ export default function Home() {
         body: formData,
       });
       
-      if (response.ok) {
+      // Formspark typically returns 200 for successful submissions
+      // Let's also check for redirect responses (3xx) which might indicate success
+      if (response.ok || (response.status >= 200 && response.status < 400)) {
         setStatus('success');
         setEmail('');
       } else {
+        console.error('Form submission failed:', response.status, response.statusText);
         setStatus('error');
       }
-    } catch {
+    } catch (error) {
+      console.error('Form submission error:', error);
       setStatus('error');
     }
   };
