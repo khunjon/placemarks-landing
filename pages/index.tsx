@@ -1,9 +1,14 @@
 import { useState } from 'react';
 import Head from 'next/head';
+import { useFormspark } from '@formspark/use-formspark';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('');
+  
+  const [submit, submitting] = useFormspark({
+    formId: '3isznOX4R',
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -11,23 +16,9 @@ export default function Home() {
     
     setStatus('loading');
     try {
-      const formData = new FormData();
-      formData.append('email', email);
-      
-      const response = await fetch('https://submit-form.com/3isznOX4R', {
-        method: 'POST',
-        body: formData,
-      });
-      
-      // Formspark typically returns 200 for successful submissions
-      // Let's also check for redirect responses (3xx) which might indicate success
-      if (response.ok || (response.status >= 200 && response.status < 400)) {
-        setStatus('success');
-        setEmail('');
-      } else {
-        console.error('Form submission failed:', response.status, response.statusText);
-        setStatus('error');
-      }
+      await submit({ email });
+      setStatus('success');
+      setEmail('');
     } catch (error) {
       console.error('Form submission error:', error);
       setStatus('error');
@@ -138,7 +129,7 @@ export default function Home() {
         
         <button
           type="submit"
-          disabled={status === 'loading' || status === 'success'}
+          disabled={submitting || status === 'success'}
           style={{
             padding: '16px 20px',
             fontSize: '16px',
@@ -147,28 +138,28 @@ export default function Home() {
             color: '#000000',
             border: 'none',
             borderRadius: '12px',
-            cursor: status === 'loading' ? 'not-allowed' : 'pointer',
-            opacity: status === 'loading' ? 0.7 : 1,
+            cursor: submitting ? 'not-allowed' : 'pointer',
+            opacity: submitting ? 0.7 : 1,
             transition: 'all 0.2s'
           }}
           onMouseOver={(e) => {
-            if (status !== 'loading' && status !== 'success') {
+            if (!submitting && status !== 'success') {
               const target = e.target as HTMLButtonElement;
               target.style.backgroundColor = '#d97706';
               target.style.transform = 'translateY(-2px)';
             }
           }}
           onMouseOut={(e) => {
-            if (status !== 'loading' && status !== 'success') {
+            if (!submitting && status !== 'success') {
               const target = e.target as HTMLButtonElement;
               target.style.backgroundColor = '#eab308';
               target.style.transform = 'translateY(0)';
             }
           }}
         >
-          {status === 'loading' && '⏳ Subscribing...'}
+          {submitting && '⏳ Subscribing...'}
           {status === 'success' && '✅ Subscribed!'}
-          {status !== 'loading' && status !== 'success' && 'Join the Waitlist'}
+          {!submitting && status !== 'success' && 'Join the Waitlist'}
         </button>
 
                  {status === 'success' && (
