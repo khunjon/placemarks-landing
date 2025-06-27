@@ -58,22 +58,6 @@ export default function Home() {
       padding: '20px',
       textAlign: 'center'
     }}>
-      {/* Coming Soon Badge */}
-      <div style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        padding: '12px 24px',
-        backgroundColor: 'rgba(234, 179, 8, 0.1)',
-        border: '1px solid rgba(234, 179, 8, 0.3)',
-        borderRadius: '50px',
-        color: '#eab308',
-        fontSize: '14px',
-        fontWeight: '500',
-        marginBottom: '40px'
-      }}>
-        ⭐ Coming Soon - Join the Waitlist
-      </div>
-
       {/* Main Heading */}
       <h1 style={{
         fontSize: 'clamp(2.5rem, 8vw, 4.5rem)',
@@ -184,29 +168,11 @@ export default function Home() {
         width: '100%',
         maxWidth: '800px',
         display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '20px'
+        justifyContent: 'center',
+        alignItems: 'center'
       }}>
-        <div>
-          <div style={{ 
-            fontSize: '20px', 
-            fontWeight: 'bold', 
-            color: '#eab308',
-            marginBottom: '5px'
-          }}>
-            Placemarks
-          </div>
-          <div style={{ fontSize: '12px', color: '#6b7280' }}>
-            © 2025 Upper Sukhumvit. All rights reserved.
-          </div>
-        </div>
-        
-        <div style={{ display: 'flex', gap: '20px' }}>
-          <a href="#" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '14px' }}>Privacy</a>
-          <a href="#" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '14px' }}>Terms</a>
-          <a href="#" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: '14px' }}>Contact</a>
+        <div style={{ fontSize: '12px', color: '#6b7280', textAlign: 'center' }}>
+          &copy; 2025 Upper Sukhumvit ❤️ Born in Bangkok
         </div>
       </footer>
       </div>
