@@ -11,10 +11,12 @@ export default function Home() {
     
     setStatus('loading');
     try {
-      const response = await fetch('/api/subscribe', {
+      const formData = new FormData();
+      formData.append('email', email);
+      
+      const response = await fetch('https://submit-form.com/3isznOX4R', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: formData,
       });
       
       if (response.ok) {
@@ -112,6 +114,7 @@ export default function Home() {
       }}>
         <input
           type="email"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your email for early access"
